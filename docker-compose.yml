@@ -9,7 +9,7 @@ services:
     image: mariadb:10.3
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: p@$$w0rd
+      MYSQL_ROOT_PASSWORD: password
     volumes:
       - ti_db:/var/lib/mysql
 
@@ -28,11 +28,11 @@ services:
     ports:
       - 8081:80
     environment:
-      OCS_DBNAME : ocsweb
-      OCS_DBSERVER_READ : ti-db
-      OCS_DBSERVER_WRITE : ti-db
-      OCS_DBUSER : root
-      OCS_DBPASS : p@$$w0rd
+      OCS_DBNAME: ocsweb
+      OCS_DBSERVER_READ: ti-db
+      OCS_DBSERVER_WRITE: ti-db
+      OCS_DBUSER: ocs
+      OCS_DBPASS: ocs
     volumes :
       - ti_inventory_srv:/usr/share/ocsinventory-reports/
       - ti_inventory_conf:/etc/ocsinventory-reports/
@@ -47,7 +47,7 @@ services:
       - 8180:80
     environment: 
       PMA_ARBITRARY: 1
-      MYSQL_ROOT_PASSWORD: p@$$w0rd
+      MYSQL_ROOT_PASSWORD: password
     links:
       - ti-db
 
