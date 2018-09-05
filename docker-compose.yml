@@ -1,0 +1,68 @@
+version: '3'
+services:
+  ti-php:
+    build: ./php
+    volumes:
+      - ti_glpi:/glpi
+
+  ti-db:
+    image: mariadb:10.3
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: p@$$w0rd
+    volumes:
+      - ti_db:/var/lib/mysql
+
+  ti-glpi:
+    build: ./glpi
+    ports:
+      - 8080:80
+    volumes:
+      - ti_glpi:/glpi
+      - ti_logs:/var/log/nginx
+    links:
+      - ti-php
+  
+  ti-inventory:
+    build: ./ocsinventory
+    ports:
+      - 8081:80
+    environment:
+      OCS_DBNAME : ocsweb
+      OCS_DBSERVER_READ : ti-db
+      OCS_DBSERVER_WRITE : ti-db
+      OCS_DBUSER : root
+      OCS_DBPASS : p@$$w0rd
+    volumes :
+      - ti_inventory_srv:/usr/share/ocsinventory-reports/
+      - ti_inventory_conf:/etc/ocsinventory-reports/
+      - ti_inventory_libs:/var/lib/ocsinventory-reports/
+    links:
+      - ti-db
+
+  ti-admin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8180:80
+    environment: 
+      PMA_ARBITRARY: 1
+      MYSQL_ROOT_PASSWORD: p@$$w0rd
+    links:
+      - ti-db
+
+volumes:
+  ti_glpi:
+    driver: local
+  ti_db:
+    driver: local
+  ti_web:
+    driver: local
+  ti_logs:
+    driver: local
+  ti_inventory_conf:
+    driver: local
+  ti_inventory_srv:
+    driver: local
+  ti_inventory_libs:
+    driver: local
