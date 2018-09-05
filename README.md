@@ -6,7 +6,7 @@ IT Management Tools - OCSInventory | GLPI
 The purpose of this project is to form a manageable and scalable environment with Docker to provide some tools that IT Technicians, IT Managers, can deploy more easily in their production environments.
 
 <figure>
-  <img src="https://raw.githubusercontent.com/zerossB/ITMT/master/assets/ITMT.png" alt="How ITMT Works"/>
+  <img src="https://raw.githubusercontent.com/zerossB/ITMT/master/assets/ITMT.png" alt="How ITMT Works" width="60%"/>
   <figcaption>Example of how ITMT works (Not yet implemented 100%)</figcaption>
 </figure>
 
