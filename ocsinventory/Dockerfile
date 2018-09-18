@@ -90,6 +90,7 @@ RUN cp -R ocsreports/* /usr/share/ocsinventory-reports/ocsreports ;\
 
 COPY ./dbconfig.inc.php /usr/share/ocsinventory-reports/ocsreports/dbconfig.inc.php
 COPY /conf/ocsinventory-reports.conf /conf/z-ocsinventory-server.conf /etc/apache2/conf-available/
+COPY ./conf/php.ini /etc/php/7.0/apache2/php.ini
 COPY ./scripts/run.sh /root/run.sh
 
 RUN chmod +x /root/run.sh ;\
