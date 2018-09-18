@@ -53,6 +53,14 @@ services:
       MYSQL_ROOT_PASSWORD: password
     links:
       - ti-db
+  
+  ti-web:
+    build: nginx/
+    ports:
+      - 80:80
+    links:
+      - ti-inventory
+      - ti-glpi
 
 volumes:
   ti_glpi:
