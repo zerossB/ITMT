@@ -9,7 +9,6 @@ services:
     image: mariadb:10.3
     restart: always
     environment:
-      MYSQL_DATABASE: ocsweb
       MYSQL_USER: ocs
       MYSQL_PASSWORD: ocs
       MYSQL_ROOT_PASSWORD: password
@@ -25,6 +24,7 @@ services:
       - ti_logs:/var/log/nginx
     links:
       - ti-php
+      - ti-db
   
   ti-inventory:
     build: ./ocsinventory
